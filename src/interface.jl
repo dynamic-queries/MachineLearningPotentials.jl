@@ -19,6 +19,7 @@ end
 function __solve(prob::MLPotentialProblem, sol::MLPotentialSolution{Any,POD,LuOpt})
     @unpack trajectories, velocities = prob
     @unpack potential = sol
+    
 end 
 
 function solve(prob::MLPotentialProblem, desciptor::AbstractDescriptor, learner::AbstractLearner)
