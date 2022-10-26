@@ -1,6 +1,8 @@
-name = "FullWaveformInversion"
-uuid = "f87a22f6-5f5c-4f7b-8d8c-527337c40bda"
+name = "MachineLearningPotentials"
+uuid = "5ea71ec2-3ab6-4730-8e5f-c6289b365a7b"
 authors = ["Rahul Manavalan"]
 version = "0.1.0"
 
 [deps]
+Molly = "aa0f7f06-fcc0-5ec4-a7f3-a573f33f9c4c"
+Optim = "429524aa-4258-5aef-a3af-852621145aeb"

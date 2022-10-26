@@ -1,5 +1,6 @@
 using MachineLearningPotentials
 using Test
 
-@testset "Master" begin
+@testset "MachineLearningPotentials" begin
+    include("ljp.jl")
 end 
