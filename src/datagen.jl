@@ -1,4 +1,19 @@
-using Molly
+function random_data()
+    # Parameters for the simulation
+    ics = 10    
+    trajs = 50
+    num_particles = 100
+    p = 3
+    # generate data
+    data = rand(ics,num_particles,p,trajs)
+    data
+end 
+
+function random_derivative(data)
+    s = collect(size(data))
+    s[3] -= 1
+    rand(s...)
+end     
 
 function Base.Matrix(obj::Vector)
     n = length(obj)

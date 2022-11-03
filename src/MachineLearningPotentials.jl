@@ -2,14 +2,22 @@ module MachineLearningPotentials
 
     using Molly
     using UnPack
+    using LinearAlgebra
+    using Optim
+    
 
+    include("utils.jl")
+    
+    include("basis.jl")
+    export HatFunctionBasis,PiecewiseLinearBasis,getparams,setparams!
+    
     include("interface.jl")
-    include("trajectories.jl")
-    include("descriptors.jl")
-    include("training.jl")
-
     export MLPotentialProblem, solve
+
+    include("datagen.jl")
+    export random_data,random_derivative
     export lj_homogenous, lj_heterogenous
-    export transform
-    export learn 
+
+    include("models.jl")
+    export Maggioni,optimize,parameters,loss
 end 
