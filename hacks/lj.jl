@@ -58,13 +58,13 @@ savefig("figures/distances.png")
 # Compute the LJ potential
 R = sort(dist) 
 # Parameters from molmod Xe I data
-ϵ = 222.30 # 1/(kᵦ K)
-σ = 4.009 # 1/A
+ϵ = 32.30 # 1/(kᵦ K)
+σ = 2.82 # 1/A
 U = LJPotential.(R,ϵ,σ)
 ∇U = ∇LJPotential.(R,ϵ,σ)
 
 # Visualize the potential and its derivative.
-plot(R,U,title="LJ Potential for Argon.",xlabel="rᵢⱼ",ylabel="Vₗⱼ")
-savefig("figures/LJ_argon.png")
-plot(R,∇U,xlabel="rᵢⱼ",ylabel="∇Vₗⱼ",label="Analytical")
-savefig("figures/∇LJ_argon.png")
+plot(R,U,title="LJ Potential for Ne.",xlabel="rᵢⱼ",ylabel="Vₗⱼ")
+savefig("figures/LJ_neon.png")
+plot(R,∇U,xlabel="rᵢⱼ",ylabel="∇Vₗⱼ",label="Analytical",title="Gradient of LJ Potential for neon")
+savefig("figures/∇LJ_neon.png")

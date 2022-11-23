@@ -213,32 +213,23 @@ function Molly.force(inter::LJ_reconstructed,dr,coord_i,coord_j,atom_i,atom_j,bo
 end 
 
 
+# Inferring
 begin
-    # Inferring
-    begin
-        natoms = 7
-        traw,Xraw = LJ(natoms)
-        σ = 1e-3
-        ntimesteps = 10   
-        nbasis = 100
+    natoms = 7
+    traw,Xraw = LJ(natoms)
+    σ = 1e-3
+    ntimesteps = 10   
+    nbasis = 20
 
-        t,X = traw[1:ntimesteps],Xraw[1:ntimesteps,:,:]
-        V = velocities(X,t)
-        X = permutedims(X[1:end-1,:,:],(3,2,1))
-        a,rb,bases = setup_regression(X,t,nbasis)
-        phi = inferred_ϕ(bases,a)
-    end
+    t,X = traw[1:ntimesteps],Xraw[1:ntimesteps,:,:]
+    V = velocities(X,t)
+    X = permutedims(X[1:end-1,:,:],(3,2,1))
+    a,rb,bases = setup_regression(X,t,nbasis)
+    phi = inferred_ϕ(bases,a)
+end
 
-    # Prediction
-    begin
-        t_test,X_test = traw[ntimesteps+1:ntimesteps+10],Xraw[ntimesteps+1:ntimesteps+10,:,:]
-        V = velocities(X_test,t_test)
-        X = permutedims(X_test[1:end-1,:,:],(3,2,1))
-        R,r = displacement_and_distance(X)
-        ϕr = [phi(ri,rb) for ri in r]
-        v_pred = (1/natoms)*R*ϕr
-        v_actual = vec(V[:,:,1])
-        plot(v_pred,label="Prediction",title="Maggioni's Regression")
-        plot!(v_actual,label="Actual")
-    end 
-end 
+# encompassing function ϕ
+r = 0.0:0.01:5.0
+Φ = [phi(ri,rb) for ri in r]
+plot(r,Φ,title="ϕ",xlabel="r",label="ϕ")
+savefig("figures/ϕ.png")
